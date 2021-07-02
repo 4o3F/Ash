@@ -16,6 +16,8 @@ public class Data {
 
     public static Map<Long, String> verifyData = new HashMap<Long, String>();
     private static File verifyDataFile = new File("verifydata.list");
+
+    public static Map<Long, String> primeusername = new HashMap<>();
     //public static Map<Long, String> usernameData = new HashMap<>();
 
     public static String[] question = new String[]{

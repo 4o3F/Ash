@@ -1,6 +1,5 @@
 plugins {
-    id 'java'
-    id 'org.jetbrains.kotlin.jvm' version '1.4.32'
+    id 'org.jetbrains.kotlin.jvm' version '1.5.0'
 }
 
 group 'moe.exusiaimoe'
@@ -8,9 +7,6 @@ version '1.0-SNAPSHOT'
 
 repositories {
 
-//    maven {
-//        url = 'https://repo.mattmalec.com/repository/releases'
-//    }
     maven {
         url = 'https://jitpack.io'
     }
@@ -20,17 +16,7 @@ repositories {
 
 
 dependencies {
-    implementation 'net.mamoe:mirai-core:2.6.4'
-    //implementation 'com.github.Pequla:RconCore:1.2'
-    //implementation 'com.mattmalec:Pterodactyl4J:1.1'
-
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-    //implementation 'com.google.code.gson:gson:2.8.7'
-}
-
-test {
-    useJUnitPlatform()
+    implementation 'net.mamoe:mirai-core:2.7-M2-dev-1'
 }
 
 jar {
@@ -40,9 +26,32 @@ jar {
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     } {
-        exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA', '**/module-info.class'
+        exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
     }
 }
+
+
+//jar {
+//    manifest {
+//        attributes(
+//                'Main-Class': 'moe.exusiaimoe.Ash',
+//        )
+//    }
+//}
+//
+//task fatJar(type: Jar) {
+//    manifest.from jar.manifest
+//    classifier = 'all'
+//    from {
+//        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+//    } {
+//        exclude "META-INF/*.SF"
+//        exclude "META-INF/*.DSA"
+//        exclude "META-INF/*.RSA"
+//    }
+//    with jar
+//}
+
 
 tasks.withType(JavaCompile).configureEach {
     // ensure that the encoding is set to UTF-8, no matter what the system default is
